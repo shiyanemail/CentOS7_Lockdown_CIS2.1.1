@@ -141,18 +141,18 @@ else
 fi
 
 #Ensure mounting of FAT filesystems is disabled
-echo
-echo -e "${RED}1.1.1.8${NC} Ensure mounting of FAT filesystems is disabled"
-modprobe -n -v vfat | grep "^install /bin/true$" || echo "install vfat /bin/true" >> /etc/modprobe.d/CIS.conf
-policystatus=$?
-lsmod | egrep "^vfat\s" && rmmod vfat
-if [[ "$policystatus" -eq 0 ]]; then
-  echo -e "${GREEN}Remediated:${NC} Ensure mounting of FAT filesystems is disabled"
-  success=$((success + 1))
-else
-  echo -e "${RED}UnableToRemediate:${NC} Ensure mounting of FAT filesystems is disabled"
-  fail=$((fail + 1))
-fi
+#echo
+echo -e "${RED}1.1.1.8${NC} Ensure mounting of FAT filesystems is disabled -- This step is skipped"
+#modprobe -n -v vfat | grep "^install /bin/true$" || echo "install vfat /bin/true" >> /etc/modprobe.d/CIS.conf
+#policystatus=$?
+#lsmod | egrep "^vfat\s" && rmmod vfat
+#if [[ "$policystatus" -eq 0 ]]; then
+#  echo -e "${GREEN}Remediated:${NC} Ensure mounting of FAT filesystems is disabled"
+#  success=$((success + 1))
+#else
+#  echo -e "${RED}UnableToRemediate:${NC} Ensure mounting of FAT filesystems is disabled"
+#  fail=$((fail + 1))
+#fi
 
 #Ensure sticky bit is set on all world-writable directories
 echo
@@ -1799,17 +1799,17 @@ else
 fi
  
 #Ensure only approved MAC algorithms are used
-echo
-echo -e "${RED}5.2.11${NC} Ensure only approved MAC algorithms are used"
-egrep -q "^(\s*)MACs\s+\S+(\s*#.*)?\s*$" /etc/ssh/sshd_config && sed -ri "s/^(\s*)MACs\s+\S+(\s*#.*)?\s*$/\1MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com,curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256\2/" /etc/ssh/sshd_config || echo "MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com,curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256" >> /etc/ssh/sshd_config
-policystatus=$?
-if [[ "$policystatus" -eq 0 ]]; then
-  echo -e "${GREEN}Remediated:${NC} Ensure only approved MAC algorithms are used"
-  success=$((success + 1))
-else
-  echo -e "${RED}UnableToRemediate:${NC} Ensure only approved MAC algorithms are used"
-  fail=$((fail + 1))
-fi
+#echo
+echo -e "${RED}5.2.11${NC} Ensure only approved MAC algorithms are used -- This step is skipped"
+#egrep -q "^(\s*)MACs\s+\S+(\s*#.*)?\s*$" /etc/ssh/sshd_config && sed -ri "s/^(\s*)MACs\s+\S+(\s*#.*)?\s*$/\1MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com,curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256\2/" /etc/ssh/sshd_config || echo "MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com,curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256" >> /etc/ssh/sshd_config
+#policystatus=$?
+#if [[ "$policystatus" -eq 0 ]]; then
+#  echo -e "${GREEN}Remediated:${NC} Ensure only approved MAC algorithms are used"
+#  success=$((success + 1))
+#else
+#  echo -e "${RED}UnableToRemediate:${NC} Ensure only approved MAC algorithms are used"
+#  fail=$((fail + 1))
+#fi
 
 #Ensure SSH Idle Timeout Interval is configured
 echo
